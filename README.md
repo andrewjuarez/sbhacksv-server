@@ -1,3 +1,3 @@
 * SB Hacks V
 
-College Buddy experience.
+**College Buddy experience.
