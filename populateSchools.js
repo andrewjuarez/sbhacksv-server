@@ -10,7 +10,7 @@ mongoose.connect(mongoURL, {useNewUrlParser: true});
 
 School = require("./models/school");
 
-var schoolAddress = "Bus LoopIrvine, CA 92697";
+var schoolAddress = "Los Angeles, CA 90095";
 
 var mapsRequestURI = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURI(schoolAddress) + "&key=" + require("./private/googleapikey");
 
@@ -22,8 +22,8 @@ request(mapsRequestURI,{ json :true}, function(err, apiRes, body){
         console.log(lat, long);
 
         var newSchool = {
-            abreviation: "UCI",
-            name: "University of California, Irvine",
+            abreviation: "ucla",
+            name: "University of California, Los Angeles",
             address: schoolAddress,
             lat: lat,
             long: long

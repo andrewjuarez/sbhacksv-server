@@ -39,7 +39,7 @@ router.post("/event", function(req, res){
             const newEvent = {
                 name        : req.body.name,
                 location    : req.body.location,
-                date        : req.body.date,
+                eventdate   : req.body.eventdate,
                 description : req.body.description,
                 school      : req.body.school.toLowerCase(),
                 lat         : lat,
