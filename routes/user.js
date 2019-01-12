@@ -7,7 +7,8 @@ router.post("/user", function(req, res){
     console.log(req.body);
 
     const newUser = {
-          username : req.body.username,
+          userName : req.body.userName,
+          name     : req.body.name,
           email    : req.body.email
     };
 

@@ -43,7 +43,8 @@ router.post("/event", function(req, res){
                 description : req.body.description,
                 school      : req.body.school.toLowerCase(),
                 lat         : lat,
-                long        : long
+                long        : long,
+                category    : req.body.category
           };
       
           // Add the event to the DB
