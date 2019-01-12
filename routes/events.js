@@ -26,19 +26,7 @@ router.post("/events", function(req, res){
 
 
 router.post("/event", function(req, res){
-    // console.log(req.body);
     var mapsRequestURI = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURI(req.body.location) + "&key=" + require("../private/googleapikey");
-
-    // axios.get(mapsRequestURI)
-    //   .then(function(response) {
-    //         console.log("Please display! " + response.data);
-    //         // console.log(response[results][geometry][location][lat]);
-            
-    //   })
-    //   .catch(function(err) {
-    //       console.log("Error" + err);
-    //   }
-    // );
 
     var lat, long;
     request(mapsRequestURI,{ json :true}, function(err, apiRes, body){
@@ -52,7 +40,7 @@ router.post("/event", function(req, res){
                 location    : req.body.location,
                 date        : req.body.date,
                 description : req.body.description,
-                school      : req.body.school,
+                school      : req.body.school.toLowerCase(),
                 lat         : lat,
                 long        : long
           };

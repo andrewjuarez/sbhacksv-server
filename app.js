@@ -7,7 +7,8 @@ var express        = require("express"),
     bodyParser     = require("body-parser"),
     mongoose       = require('mongoose'),
     methodOverride = require("method-override"),
-    request        = require("request");
+    request        = require("request"),
+    cors           = require("cors");
 
 // Mongoose Client
 const mongoURL = require("./private/mongo"); // Keep the connection URL hidden from GitHub.
@@ -15,6 +16,7 @@ const mongoURL = require("./private/mongo"); // Keep the connection URL hidden f
 // Define app and set associations
 var app = express();
 // app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 app.use(bodyParser.json({ type: "*/*" }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
