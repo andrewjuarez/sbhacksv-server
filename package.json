@@ -13,10 +13,12 @@
   "author": "Andrew, Salvador, Kenny, Josh",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "method-override": "^3.0.0",
-    "mongoose": "^5.4.3"
+    "mongoose": "^5.4.3",
+    "request": "^2.88.0"
   }
 }

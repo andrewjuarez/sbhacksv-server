@@ -6,7 +6,8 @@ const port = process.env.PORT || 3090;
 var express        = require("express"),
     bodyParser     = require("body-parser"),
     mongoose       = require('mongoose'),
-    methodOverride = require("method-override");
+    methodOverride = require("method-override"),
+    request        = require("request");
 
 // Mongoose Client
 const mongoURL = require("./private/mongo"); // Keep the connection URL hidden from GitHub.
