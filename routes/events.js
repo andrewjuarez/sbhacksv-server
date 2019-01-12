@@ -9,19 +9,20 @@ var router = express.Router();
 // Display all events associated with school
 router.post("/events", function(req, res){
     var school = req.body.school;
-
-    Event.find({"school" : school}, function(err, events){
-        if(err){
-            console.log("Error retrieving events");
-            res.send("/GET Error with events");
-        } else {
-            
-            events.forEach(function(event) {
-                console.log("Event " + event["description"] );
-            });
-            res.send(events);
-        }
-    });
+    if(!school){
+        console.log("School not specified.")
+        res.send({});
+    } else {
+        Event.find({"school" : school}, function(err, events){
+            if(err){
+                console.log("Error retrieving events: " + err);
+                res.send({}); // Send an empty obj.
+            } else {
+                
+                res.send(events);
+            }
+        });
+    }
 });
 
 
