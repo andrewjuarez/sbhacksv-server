@@ -9,7 +9,7 @@ var eventSchema = new mongoose.Schema({
     lat: String,
     long: String,
     category: String,
-    author  : String
+    userName  : String
 });
 
 // event model
