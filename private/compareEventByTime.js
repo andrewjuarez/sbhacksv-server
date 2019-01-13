@@ -2,8 +2,8 @@
 
 module.exports = function(a, b){
     if(a.eventdatestart > b.eventdatestart){
-        return 0;
-    } else {
         return 1;
+    } else {
+        return 0;
     }
 }
