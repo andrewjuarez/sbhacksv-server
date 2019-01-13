@@ -9,21 +9,39 @@ var router = express.Router();
 // Display all events associated with school
 router.post("/events", function(req, res){
     var school = req.body.school;
+    var category = req.body.category;
     if(!school){
         console.log("School not specified.")
         res.send({});
+    } else if(!category) {
+        console.log("Category not specified.")
+        res.send({});
     } else {
-        Event.find({"school" : school}, function(err, events){
-            if(err){
-                console.log("Error retrieving events: " + err);
-                res.send({}); // Send an empty obj.
-            } else {
-                console.log("Please let me get all the events for " + school);
-                events.sort(require("../private/compareEventByTime"));
-                events = require("../private/removePassedEvents")(events);
-                res.send(events);
-            }
-        });
+        if(category != "all") {
+            Event.find({"school" : school, "category" : category}, function(err, events){
+                if(err){
+                    console.log("Error retrieving events: " + err);
+                    res.send({}); // Send an empty obj.
+                } else {
+                    console.log("Please let me get all the events for " + school);
+                    events.sort(require("../private/compareEventByTime"));
+                    events = require("../private/removePassedEvents")(events);
+                    res.send(events);
+                }
+            });
+        } else {
+            Event.find({"school" : school}, function(err, events){
+                if(err){
+                    console.log("Error retrieving events: " + err);
+                    res.send({}); // Send an empty obj.
+                } else {
+                    console.log("Please let me get all the events for " + school);
+                    events.sort(require("../private/compareEventByTime"));
+                    events = require("../private/removePassedEvents")(events);
+                    res.send(events);
+                }
+            });
+        }
     }
 });
 
