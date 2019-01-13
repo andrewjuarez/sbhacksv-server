@@ -5,6 +5,7 @@ var express   = require("express"),
 
 var router = express.Router();
 
+var EventSortAlg = require("../private/compareEventByTime");
 
 // Display all events associated with school
 router.post("/events", function(req, res){
@@ -23,8 +24,8 @@ router.post("/events", function(req, res){
                     res.send({}); // Send an empty obj.
                 } else {
                     console.log("Please let me get all the events for " + school);
-                    events.sort(require("../private/compareEventByTime"));
                     events = require("../private/removePassedEvents")(events);
+                    events.sort(EventSortAlg);
                     res.send(events);
                 }
             });
@@ -34,9 +35,9 @@ router.post("/events", function(req, res){
                     console.log("Error retrieving events: " + err);
                     res.send({}); // Send an empty obj.
                 } else {
-                    console.log("Please let me get all the events for " + school);
-                    events.sort(require("../private/compareEventByTime"));
+                    console.log("Please let me get all the events for " + school);                    
                     events = require("../private/removePassedEvents")(events);
+                    events.sort(EventSortAlg);
                     res.send(events);
                 }
             });

@@ -36,10 +36,11 @@ function getCorrectSecond(){
     return second;
 }
 
-var currentDateTime = dateTime.getFullYear() + "-" + getCorrectMonth() + "-" + dateTime.getDate() + " " + getCorrectHour() + ":" + getCorrectMinute() + ":" + getCorrectSecond();
-// console.log("Generated: " + currentDateTime);
+
 
 module.exports = function(events){
+    var currentDateTime = dateTime.getFullYear() + "-" + getCorrectMonth() + "-" + dateTime.getDate() + " " + getCorrectHour() + ":" + getCorrectMinute() + ":" + getCorrectSecond();
+    console.log("Generated: " + currentDateTime);
 
     var counter = 0;
     var nums = [];
@@ -47,6 +48,7 @@ module.exports = function(events){
     var eventsToReturn = [];
     events.forEach(event => {
         if(event.eventdateend > currentDateTime){
+            console.log(event.eventdateend, "-", event.name);
             eventsToReturn.push(event);
         }
     });
