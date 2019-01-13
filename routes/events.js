@@ -32,7 +32,7 @@ router.post("/event", function(req, res){
 
     var lat, long;
     request(mapsRequestURI,{ json :true}, function(err, apiRes, body){
-        if(!err && apiRes.statusCode == 200){
+        if(!!err && apiRes.statusCode == 200){
             lat = apiRes.body["results"][0]["geometry"]["location"]["lat"];
             long = apiRes.body["results"][0]["geometry"]["location"]["lng"];
             console.log(lat, long);
@@ -40,7 +40,7 @@ router.post("/event", function(req, res){
             const newEvent = {
                 name          : req.body.name,
                 location      : req.body.location,
-                eventdate     : req.body.eventdate,
+                // eventdate     : req.body.eventdate,
                 description   : req.body.description,
                 school        : req.body.school.toLowerCase(),
                 lat           : lat,
@@ -65,6 +65,7 @@ router.post("/event", function(req, res){
 
         } else {
             console.log(err);
+            res.status(400).send({error: "Invalid Address"}); 
         }
     });
 
