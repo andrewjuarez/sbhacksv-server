@@ -18,7 +18,8 @@ router.post("/events", function(req, res){
                 console.log("Error retrieving events: " + err);
                 res.send({}); // Send an empty obj.
             } else {
-                
+                events.sort(require("../private/compareEventByTime"));
+
                 res.send(events);
             }
         });
@@ -37,15 +38,17 @@ router.post("/event", function(req, res){
             console.log(lat, long);
 
             const newEvent = {
-                name        : req.body.name,
-                location    : req.body.location,
-                eventdate   : req.body.eventdate,
-                description : req.body.description,
-                school      : req.body.school.toLowerCase(),
-                lat         : lat,
-                long        : long,
-                category    : req.body.category,
-                userName    : req.body.userName
+                name          : req.body.name,
+                location      : req.body.location,
+                eventdate     : req.body.eventdate,
+                description   : req.body.description,
+                school        : req.body.school.toLowerCase(),
+                lat           : lat,
+                long          : long,
+                category      : req.body.category,
+                userName      : req.body.userName,
+                eventdateend  : req.body.eventdateend,
+                eventdatestart: req.body.eventdatestart
           };
       
           // Add the event to the DB
