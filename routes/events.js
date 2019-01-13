@@ -10,14 +10,13 @@ var router = express.Router();
 router.post("/events", function(req, res){
     var school = req.body.school;
     var category = req.body.category;
+    console.log("School: ", school);
+    console.log("category: ", category);
     if(!school){
         console.log("School not specified.")
         res.send({});
-    } else if(!category) {
-        console.log("Category not specified.")
-        res.send({});
     } else {
-        if(category != "all") {
+        if(!!category && category != "all") {
             Event.find({"school" : school, "category" : category}, function(err, events){
                 if(err){
                     console.log("Error retrieving events: " + err);
