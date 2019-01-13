@@ -5,12 +5,13 @@ const twilioAuth = require("../private/twilioAuth");
 const twilioClient = require("twilio")(twilioAuth[0], twilioAuth[1]);
 const twilioNumber = require("../private/twilioNumber");
 
-router.post("/textMe", function(req, res){
+// Send a text message
+router.post("/sms", function(req, res){
     console.log("Attempting to text from Twilio.");
     twilioClient.messages.create({
-        body: "Hi Andrew!",
+        body: req.body.message,
         from: twilioNumber,
-        to: "+15623193696"
+        to: req.body.number
     })
     .then(message => console.log(message.sid))
     .done(console.log("Message sent completed!"));
